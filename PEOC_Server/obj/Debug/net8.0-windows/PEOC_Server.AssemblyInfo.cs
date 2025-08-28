@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PEOC_Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+80121a22d1f10abdf1a47cd4c245432caca7adda")]
 [assembly: System.Reflection.AssemblyProductAttribute("PEOC_Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PEOC_Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

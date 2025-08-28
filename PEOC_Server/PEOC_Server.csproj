@@ -7,10 +7,14 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Configuration>appsettings.Development.json</Configuration>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Marten" Version="8.9.0" />
+    <PackageReference Include="MediatR" Version="13.0.0" />
     <PackageReference Include="Npgsql" Version="9.0.3" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
 </Project>

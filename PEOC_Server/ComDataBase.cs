@@ -1,6 +1,7 @@
 ﻿using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -30,24 +31,30 @@ namespace PEOC_Server
             return "Server = localhost; Database = PeocDataBase; Trusted_Connection = True";
         }
 
-        public async Task<IEnumerable<string>> GetMenu()
+        // методы обеспечивающие работу пользовательского функционала
+        public async Task<decimal> CalculatingIncomeForPeriod(DateTime beginning, DateTime end) 
         {
             exe_command.CommandText = $"SELECT * FROM menu_and_crash WHERE availab='True'";
+            await exe_command.ExecuteNonQueryAsync();
+
+            return 1;
+        }
+
+        public async Task<IEnumerable<string>> GetMenu()
+        {
+            exe_command.CommandText = $"SELECT SUM(quantity) AS \"Total Quantity\" FROM inventory WHERE product_type = 'Hardware'";
             NpgsqlDataReader reader = await exe_command.ExecuteReaderAsync();
 
             var result = new List<string>();
 
             while (await reader.ReadAsync())
             {
-                result.Add(new Teacher(
-                    id: (int)reader["id"],
-                    first_name: reader[1] as string, // column index can be used
-                    last_name: reader.GetString(2), // another syntax option
-                    subject: reader["subject"] as string,
-                    salary: (int)reader["salary"]));
-
+                result.Add($"{reader["name"]} -- {reader["price"]} рублей");
             }
+
             return result;
         }
+
+        //public async Task TableBooking(string guest_name, int table, )
     }
 }

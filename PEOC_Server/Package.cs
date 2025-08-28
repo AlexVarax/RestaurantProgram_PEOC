@@ -14,11 +14,16 @@ namespace PEOC_Server
         AddItem,
         PrintingReceipt,
         GiveDiscount,
-        SplitOrder
+        SplitOrder,
+        UpdateTables
     }
 
-    static public class Package
+    public class Package
     {
+        public TypeReq typeRequest;
+        public int id_sotr;
+
+
         public static string Packaging(TypeReq typeReq, int id)
         {
             return "";

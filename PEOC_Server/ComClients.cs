@@ -20,10 +20,6 @@ namespace PEOC_Server
 
         public ComClients()
         {
-            /// <summary>
-            /// Создаётся объект класса общения с клиентами по локальной сети
-            /// </summary>
-
             this.brodcastAddress = CreatingWideAddress();
 
             this.ExpectDevic = RememberDevices();
@@ -98,11 +94,16 @@ namespace PEOC_Server
         {
             Dictionary<string, Device> mac_dev = new Dictionary<string, Device>();
 
-            using (FileStream fs = new FileStream("user.json", FileMode.OpenOrCreate))
+            try
             {
-                Device dev = JsonSerializer.Deserialize<Device>(fs);
-                mac_dev.Add(dev.MAC, dev);
+                using (FileStream fs = new FileStream("user.json", FileMode.OpenOrCreate))
+                {
+                    Device dev = JsonSerializer.Deserialize<Device>(fs);
+                    mac_dev.Add(dev.MAC, dev);
+                }
             }
+            catch { }
+            
 
             return mac_dev;
         }
@@ -112,7 +113,7 @@ namespace PEOC_Server
             HashSet<string> ip_dev = new HashSet<string>();
             mac_dev = new Dictionary<string, string>();
 
-            using var receiver = new UdpClient(552); // UdpClient для получения данных
+            using var receiver = new UdpClient(552);
             receiver.JoinMulticastGroup(brodcastAddress);
             receiver.MulticastLoopback = false;
             IPEndPoint plug = null;

@@ -44,7 +44,6 @@
 - UDP
 - mDNS
 - Docker
-- CQRS
 - PostgreSQL
 - JSON
 - Telegram Bot
